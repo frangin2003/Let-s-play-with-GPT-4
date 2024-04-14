@@ -3,7 +3,9 @@ extends AudioStreamPlayer
 var effect  # See AudioEffect in docs
 var recording  # See AudioStreamSample in docs
 
-var save_path = "res://recorded_audio.wav"
+var project_path = ProjectSettings.globalize_path("res://")
+var audio_file_name = "recorded_audio.wav"
+var audio_file_path = project_path + audio_file_name
 
 var stereo := true
 var mix_rate := 44100  # This is the default mix rate on recordings
@@ -25,6 +27,6 @@ func stop_audio_recording():
 		recording.set_mix_rate(mix_rate)
 		recording.set_format(format)
 		recording.set_stereo(stereo)
-		recording.save_to_wav(save_path)
-		print("Audio saved to: ", save_path)
-		LlmServer.send_audio("hi", "hi", recording.get_data())
+		recording.save_to_wav(audio_file_path)
+		print("Audio saved to: ", audio_file_path)
+		LlmServer.send_audio("hi", "hi", audio_file_path)
