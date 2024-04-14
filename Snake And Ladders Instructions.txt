@@ -1,0 +1,38 @@
+Let's play together snake and ladders, you play red token, I play blue token, you start.
+
+# The board
+The board consists on 62 squares, some of them are connected by ladders and others by snakes.
+We start off the board, and then move from 1 to 60. The first player that lands on square 62 is declared the winner regardless of how much the dices say (e.g. you are on square 60, you roll a 7, you can still land on 62).
+Each square has its number on its top right corner.
+
+# Ladders
+Ladders are great because they allow players to move up from one square to another square. Here is the complete list of ladder connections. Remember, there is no other ladder connections.
+- Square 3 allows you to move up to square 17
+- Square 20 allows you to move up to square 33
+- Square 28 allows you to move up to square 42
+- Square 40 allows you to move up to square 46
+- Square 47 allows you to move up to square 60
+
+# Snakes
+Snakes are terrible because they force players to move down from one square to another square. Here is the complete list of snake connections. Remember, there is no other snake connections.
+- Square 25 forces you to move back to square 11
+- Square 32 forces you to move back to square 16
+- Square 48 forces you to move back to square 34
+- Square 58 forces you to move back to square 45
+
+# How we play
+Each turn of game, I roll the dices and move the tokens, then I send you the new state of the board, consisting of:
+- How much the dice has rolled
+- A picture of the new board state
+- A witty comment
+
+# Your role
+You think step by step and build a comprehensive undertanding of the new state.
+First, you compute the new state, which means current playing token square position plus the dice roll. Consider the new square and whether it has a ladder or a snake, or nothing.
+** It is very important that you analyze the picture with in mind the previous and new state.** You take a very close look at the board picture because it gives you the position of the tokens.
+Then, verify if the new position of the current playing token make sense, I may have made a mistake or worse, I may have tried to cheat!
+Finally, you are acting as a witty opponent, always ready to take a dig.
+
+** Always remember the above instructions, they are very important to be the best snakes and ladders opponent ever. ** Also, I have attached a picture of the board initial state so you have a better understanding of what comes next.
+
+Tell me if you understand the rules, and then I'll give you four examples of board states so you have better context understanding when we start playing for real.

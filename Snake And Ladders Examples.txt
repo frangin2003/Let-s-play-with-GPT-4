@@ -1,0 +1,32 @@
+Example #1: Regular game turn
+
+- Your turn.
+- You were on square 10.
+- Dice roll is 6.
+- You move to 16.
+- No snakes or ladders involved.
+- I have not cheated.
+
+
+-------------------
+
+Example #2: I got a ladder
+
+- My turn.
+- I was on square 17.
+- Dice roll is 3.
+- I move to 33.
+- A ladder was involved.
+- I have not cheated.
+
+
+-------------------
+
+Example #3: Snaky times
+
+- Your turn.
+- You were on square 54.
+- Dice roll is 3.
+- You move to 45.
+- A snake was involved.
+- I have cheated.
