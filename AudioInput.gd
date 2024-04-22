@@ -27,6 +27,12 @@ func stop_audio_recording():
 		recording.set_mix_rate(mix_rate)
 		recording.set_format(format)
 		recording.set_stereo(stereo)
+				
+		Global.RECORDED_AUDIO = recording.data
+		#Global.check_and_send_to_llm()
+		
 		recording.save_to_wav(audio_file_path)
 		print("Audio saved to: ", audio_file_path)
-		LlmServer.send_audio("hi", "hi", audio_file_path)
+		Global.RECORDED_AUDIO_URL = audio_file_path
+		Global.check_and_send_to_llm_urls()
+

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cx8jv5whhbano"]
+[gd_scene load_steps=12 format=3 uid="uid://cx8jv5whhbano"]
 
+[ext_resource type="Script" path="res://CountryGuesser.gd" id="1_4rxe4"]
 [ext_resource type="Texture2D" uid="uid://b6g0gssme3ggh" path="res://assets/worldmap.png" id="1_dcp13"]
 [ext_resource type="Script" path="res://HandArea2D.gd" id="2_2hrg1"]
 [ext_resource type="Texture2D" uid="uid://dy0sjgkpbuge5" path="res://assets/finger.png" id="3_61k0i"]
@@ -29,6 +30,7 @@ corner_radius_bottom_left = 10
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_t6b11"]
 
 [node name="CountryGuesser" type="Node2D"]
+script = ExtResource("1_4rxe4")
 
 [node name="WorldMap" type="Sprite2D" parent="."]
 position = Vector2(577, 331)
