@@ -11,12 +11,13 @@ config_version=5
 [application]
 
 config/name="Let's play with GPT-4"
-run/main_scene="res://country_guesser.tscn"
+run/main_scene="res://scenes/gui/gui.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
 
+buses/default_bus_layout="res://scenes/gui/default_bus_layout.tres"
 driver/enable_input=true
 
 [autoload]
@@ -26,6 +27,8 @@ LlmServer="*res://global/LlmServer.gd"
 
 [display]
 
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/mode=3
 window/stretch/mode="viewport"
 window/stretch/aspect="keep_height"

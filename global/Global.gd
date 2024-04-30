@@ -3,7 +3,8 @@ extends Node
 var RECORDED_AUDIO: PackedByteArray
 var SCREENSHOT: PackedByteArray
 
-var RECORDED_AUDIO_URL = null
+var LLM_INPUT_ARRAY = []
+var RECORDED_AUDIO_URL = ProjectSettings.globalize_path("res://") + "recorded_audio.wav"
 var SCREENSHOT_URL = null
 var SYSTEM = null
 
@@ -13,6 +14,12 @@ func resetAudioAndScreenshot():
 	SCREENSHOT = PackedByteArray()
 	RECORDED_AUDIO_URL = null
 	SCREENSHOT_URL = null
+
+func add_to_memory(message):
+	LLM_INPUT_ARRAY.append(message)
+
+func reset_memory():
+	LLM_INPUT_ARRAY = []
 
 func check_and_send_to_llm():
 	if RECORDED_AUDIO != null and SCREENSHOT != null:

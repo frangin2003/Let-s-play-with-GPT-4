@@ -1,0 +1,113 @@
+[gd_scene load_steps=13 format=3 uid="uid://cx8jv5whhbano"]
+
+[ext_resource type="Script" path="res://scenes/gui/CountryGuesser.gd" id="1_oyuce"]
+[ext_resource type="Texture2D" uid="uid://b6g0gssme3ggh" path="res://assets/worldmap.png" id="2_vxfbv"]
+[ext_resource type="Script" path="res://scenes/gui/HandArea2D.gd" id="3_bud6y"]
+[ext_resource type="Texture2D" uid="uid://dy0sjgkpbuge5" path="res://assets/finger.png" id="4_kbv24"]
+[ext_resource type="Theme" uid="uid://bk4nrdxo8h0g0" path="res://themes/MinimalUI.tres" id="5_ugrgy"]
+[ext_resource type="Script" path="res://scenes/gui/SendToLlmButton.gd" id="6_pvdbj"]
+[ext_resource type="Script" path="res://scenes/gui/LlmOutputScrollContainer.gd" id="7_o1qqw"]
+[ext_resource type="Script" path="res://scenes/gui/AudioInput.gd" id="8_u2cg8"]
+[ext_resource type="Script" path="res://scenes/gui/UserTextEdit.gd" id="9_pujfy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26r1y"]
+size = Vector2(973, 780.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvnm1"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.329412, 0.329412, 0.329412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_t6b11"]
+
+[node name="gui" type="Node2D"]
+scale = Vector2(1.63186, 1.63186)
+script = ExtResource("1_oyuce")
+
+[node name="WorldMap" type="Sprite2D" parent="."]
+position = Vector2(588.287, 330.806)
+scale = Vector2(0.612799, 0.61147)
+texture = ExtResource("2_vxfbv")
+
+[node name="HandArea2D" type="Area2D" parent="."]
+position = Vector2(-43, 959)
+scale = Vector2(0.8, 0.8)
+script = ExtResource("3_bud6y")
+
+[node name="HandCollisionShape2D" type="CollisionShape2D" parent="HandArea2D"]
+position = Vector2(-112, -279)
+shape = SubResource("RectangleShape2D_26r1y")
+
+[node name="Hand" type="Sprite2D" parent="HandArea2D/HandCollisionShape2D"]
+position = Vector2(-2.5, -0.5)
+texture = ExtResource("4_kbv24")
+
+[node name="SendToLlmButton" type="Button" parent="."]
+offset_left = 814.0
+offset_top = 588.0
+offset_right = 1167.0
+offset_bottom = 641.0
+theme = ExtResource("5_ugrgy")
+theme_override_constants/outline_size = 0
+theme_override_constants/icon_max_width = 30
+text = "PRESS TO RECORD"
+expand_icon = true
+script = ExtResource("6_pvdbj")
+
+[node name="LlmOutputControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 791.0
+offset_top = 30.0
+offset_right = 791.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LlmOutputScrollContainer" type="ScrollContainer" parent="LlmOutputControl"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 21.0
+offset_right = 378.0
+offset_bottom = 484.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvnm1")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+script = ExtResource("7_o1qqw")
+
+[node name="LlmOutputLabel" type="Label" parent="LlmOutputControl/LlmOutputScrollContainer"]
+custom_minimum_size = Vector2(340, 525)
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+autowrap_mode = 3
+
+[node name="AudioInput" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_t6b11")
+autoplay = true
+bus = &"Record"
+script = ExtResource("8_u2cg8")
+
+[node name="UserTextEdit" type="TextEdit" parent="."]
+offset_left = 814.0
+offset_top = 520.0
+offset_right = 1167.0
+offset_bottom = 583.0
+theme = ExtResource("5_ugrgy")
+placeholder_text = "You can talk to me from here too..."
+script = ExtResource("9_pujfy")
+
+[connection signal="audio_recording_started" from="SendToLlmButton" to="AudioInput" method="start_audio_recording"]
+[connection signal="audio_recording_stopped" from="SendToLlmButton" to="AudioInput" method="stop_audio_recording"]
+[connection signal="pressed" from="SendToLlmButton" to="SendToLlmButton" method="_on_Button_pressed"]

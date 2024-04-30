@@ -8,7 +8,8 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Global.SYSTEM = "Let's play a game. Think of a country and give me a clue. The clue must be specific enough that there is only one correct country. I will try pointing at the country on a map."
+	#Global.SYSTEM = "Let's play a game. Think of a country and give me a clue. The clue must be specific enough that there is only one correct country. I will try pointing at the country on a map. Let's start now"
+	Global.SYSTEM = "Let's play a game. Think of a country and give the user a clue. The clue must be specific enough that there is only one correct country. User will try to answer."
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

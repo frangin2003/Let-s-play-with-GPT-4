@@ -3,9 +3,7 @@ extends AudioStreamPlayer
 var effect  # See AudioEffect in docs
 var recording  # See AudioStreamSample in docs
 
-var project_path = ProjectSettings.globalize_path("res://")
-var audio_file_name = "recorded_audio.wav"
-var audio_file_path = project_path + audio_file_name
+
 
 var stereo := true
 var mix_rate := 44100  # This is the default mix rate on recordings
