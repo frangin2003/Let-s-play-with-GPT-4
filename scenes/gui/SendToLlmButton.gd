@@ -8,15 +8,11 @@ var llmOutput
 var PRESS_TO_RECORD = "PRESS TO RECORD"
 var STOP_RECORDING_AND_SEND = "STOP RECORDING AND SEND"
 
-var project_path = ProjectSettings.globalize_path("res://")
-var screenshot_file_name = "screenshot.png"
-var screenshot_file_path = project_path + screenshot_file_name
-
+var llmOutputLabel
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#LlmServer.connect("llm_chunk", llm_chunk)
-	#connect("pressed", _on_Button_pressed)
+	llmOutputLabel = get_node("../LlmOutputControl/LlmOutputScrollContainer/LlmOutputLabel")
 	text = PRESS_TO_RECORD
 
 func _on_Button_pressed():
@@ -47,16 +43,14 @@ func save_cropped_screenshot_and_animate():
 	
 	# Save to Global var
 	Global.SCREENSHOT = cropped_image.save_png_to_buffer()
-	#Global.check_and_send_to_llm()
 
 	# Save the cropped image to disk
-	var save_error = cropped_image.save_png(screenshot_file_path)
+	print(Global.SCREENSHOT_URL)
+	var save_error = cropped_image.save_png(Global.SCREENSHOT_URL)
 	if save_error != OK:
 		push_error("Failed to save screenshot: " + str(save_error))
 	else:
-		print("Screenshot saved as: " + screenshot_file_path)
-	Global.SCREENSHOT_URL = screenshot_file_path
-	Global.check_and_send_to_llm_urls()
+		print("Screenshot saved as: " + Global.SCREENSHOT_URL)
 
 	var image_texture = ImageTexture.create_from_image(cropped_image)
 
@@ -86,3 +80,5 @@ func save_cropped_screenshot_and_animate():
 	await tween.finished
 
 	control_node.queue_free()
+	llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[Jay Petey]: "
+	Global.check_and_send_to_llm_urls()

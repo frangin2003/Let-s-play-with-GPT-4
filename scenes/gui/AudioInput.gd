@@ -2,9 +2,6 @@ extends AudioStreamPlayer
 
 var effect  # See AudioEffect in docs
 var recording  # See AudioStreamSample in docs
-
-
-
 var stereo := true
 var mix_rate := 44100  # This is the default mix rate on recordings
 var format := 1  # This equals to the default format: 16 bits
@@ -27,10 +24,5 @@ func stop_audio_recording():
 		recording.set_stereo(stereo)
 				
 		Global.RECORDED_AUDIO = recording.data
-		#Global.check_and_send_to_llm()
-		
-		recording.save_to_wav(audio_file_path)
-		print("Audio saved to: ", audio_file_path)
-		Global.RECORDED_AUDIO_URL = audio_file_path
-		Global.check_and_send_to_llm_urls()
-
+		recording.save_to_wav(Global.RECORDED_AUDIO_URL)
+		print("Audio NOT saved to: ", Global.RECORDED_AUDIO_URL)

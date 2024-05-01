@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/gui/CountryGuesser.gd" id="1_oyuce"]
 [ext_resource type="Texture2D" uid="uid://b6g0gssme3ggh" path="res://assets/worldmap.png" id="2_vxfbv"]
 [ext_resource type="Script" path="res://scenes/gui/HandArea2D.gd" id="3_bud6y"]
-[ext_resource type="Texture2D" uid="uid://dy0sjgkpbuge5" path="res://assets/finger.png" id="4_kbv24"]
+[ext_resource type="Texture2D" uid="uid://djld3i80m5ifn" path="res://assets/record-128.png" id="4_kinm6"]
 [ext_resource type="Theme" uid="uid://bk4nrdxo8h0g0" path="res://themes/MinimalUI.tres" id="5_ugrgy"]
 [ext_resource type="Script" path="res://scenes/gui/SendToLlmButton.gd" id="6_pvdbj"]
 [ext_resource type="Script" path="res://scenes/gui/LlmOutputScrollContainer.gd" id="7_o1qqw"]
@@ -11,7 +11,7 @@
 [ext_resource type="Script" path="res://scenes/gui/UserTextEdit.gd" id="9_pujfy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26r1y"]
-size = Vector2(973, 780.5)
+size = Vector2(644.321, 530.727)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvnm1"]
 content_margin_left = 8.0
@@ -41,16 +41,16 @@ texture = ExtResource("2_vxfbv")
 
 [node name="HandArea2D" type="Area2D" parent="."]
 position = Vector2(-43, 959)
-scale = Vector2(0.8, 0.8)
 script = ExtResource("3_bud6y")
 
 [node name="HandCollisionShape2D" type="CollisionShape2D" parent="HandArea2D"]
-position = Vector2(-112, -279)
+position = Vector2(144.554, -533.128)
 shape = SubResource("RectangleShape2D_26r1y")
 
 [node name="Hand" type="Sprite2D" parent="HandArea2D/HandCollisionShape2D"]
-position = Vector2(-2.5, -0.5)
-texture = ExtResource("4_kbv24")
+position = Vector2(1.86907, -0.970294)
+scale = Vector2(0.202125, 0.202125)
+texture = ExtResource("4_kinm6")
 
 [node name="SendToLlmButton" type="Button" parent="."]
 offset_left = 814.0

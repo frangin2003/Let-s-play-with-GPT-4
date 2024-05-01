@@ -4,6 +4,7 @@ var llmOutputLabel
 var BEGIN_OF_TEXT_TAG = "<|begin_of_text|>"
 var END_OF_TEXT_TAG = "<|end_of_text|>"
 var COMMAND_TAG = "<|command|>"
+var output = ""
 var command = ""
 
 # Called when the node enters the scene tree for the first time.
@@ -17,8 +18,9 @@ func _process(delta):
 	pass
 
 func llm_chunk(chunk):
+	output += chunk
 	if (chunk == END_OF_TEXT_TAG):
-		pass
+		Global.add_to_memory(LlmServer.create_assistant_message(output))
 	if (chunk != BEGIN_OF_TEXT_TAG
 		and chunk != END_OF_TEXT_TAG
 		and !chunk.begins_with(COMMAND_TAG)):
@@ -32,10 +34,11 @@ func _gui_input(event):
 		var key_event = event as InputEventKey
 		if key_event.pressed and key_event.keycode == KEY_ENTER:
 			var user_message = text # Get the text from the TextEdit
-			var system_message = Global.SYSTEM
 			clear()
-			llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n\n"
+			llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[You]: " + user_message
+			llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[Jay Petey]: "
+			output = ""
 			command = ""
-			LlmServer.send_system_and_user_prompt(system_message, user_message)
+			LlmServer.send_to_llm_server(Global.SYSTEM, user_message)
 			get_viewport().set_input_as_handled()
 			
