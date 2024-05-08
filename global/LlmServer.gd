@@ -64,9 +64,14 @@ func remove_messages_with_images():
 func create_assistant_message(output):
 	return create_message("assistant", output)
 
-func send_to_llm_server(system_prompt: String, user_prompt: String, with_speech: bool=false, image_url=null, system_image_url=null) -> void:
+func send_to_llm_server(system_prompt: String, user_prompt: String, with_speech: bool=false, image_url=null, system_image_url=null, system_image_urls=null) -> void:
 	if socket.get_ready_state() == WebSocketPeer.STATE_OPEN:
-		var messages_array = [create_message("system", system_prompt, false, system_image_url)]
+		var messages_array = [create_message("system", system_prompt, false)]
+		if (system_image_url != null):
+			messages_array.append(create_message("assistant", null, false, system_image_url))
+		if (system_image_urls != null):
+			for element in system_image_urls:
+				messages_array.append(create_message("assistant", null, false, element))
 		if (image_url != null):
 			remove_messages_with_images()
 		Global.add_to_memory(create_message("user", user_prompt, with_speech, image_url))

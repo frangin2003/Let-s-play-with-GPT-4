@@ -35,8 +35,8 @@ func _gui_input(event):
 		if key_event.pressed and key_event.keycode == KEY_ENTER:
 			var user_message = text # Get the text from the TextEdit
 			clear()
-			llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[You]: " + user_message
-			llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[Jay Petey]: "
+			llmOutputLabel.text += "\n\n[You]: " + user_message
+			llmOutputLabel.text += "\n\n[Jay Petey]: "
 			output = ""
 			command = ""
 			LlmServer.send_to_llm_server(Global.SYSTEM, user_message)

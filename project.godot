@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Let's play with GPT-4"
-run/main_scene="res://scenes/gui/gui.tscn"
+run/main_scene="res://scenes/country_guesser_with_hand/country_guesser_with_hand.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://scenes/gui/default_bus_layout.tres"
+buses/default_bus_layout="res://scenes/country_guesser/default_bus_layout.tres"
 driver/enable_input=true
 
 [autoload]

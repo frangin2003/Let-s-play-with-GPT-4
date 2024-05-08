@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36s7eyupvoan"
-path="res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"
+uid="uid://dqabolpwovckw"
+path="res://.godot/imported/southafrica.png-a0b7417c688331c75212b015187083da.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screenshot.png"
-dest_files=["res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"]
+source_file="res://assets/southafrica.png"
+dest_files=["res://.godot/imported/southafrica.png-a0b7417c688331c75212b015187083da.ctex"]
 
 [params]
 

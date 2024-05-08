@@ -11,11 +11,11 @@ func _ready():
 	var idx = AudioServer.get_bus_index("Record")
 	effect = AudioServer.get_bus_effect(idx, 0)
 
-func start_audio_recording():
+func _on_send_to_llm_button_audio_recording_started():
 	if !effect.is_recording_active():
 		effect.set_recording_active(true)
 
-func stop_audio_recording():
+func _on_send_to_llm_button_audio_recording_stopped():
 	if effect.is_recording_active():
 		recording = effect.get_recording()
 		effect.set_recording_active(false)
@@ -25,4 +25,4 @@ func stop_audio_recording():
 				
 		Global.RECORDED_AUDIO = recording.data
 		recording.save_to_wav(Global.RECORDED_AUDIO_URL)
-		print("Audio NOT saved to: ", Global.RECORDED_AUDIO_URL)
+		print("Audio saved to: ", Global.RECORDED_AUDIO_URL)

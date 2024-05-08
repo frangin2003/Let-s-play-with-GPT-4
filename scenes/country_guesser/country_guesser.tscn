@@ -1,14 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://cx8jv5whhbano"]
+[gd_scene load_steps=13 format=3 uid="uid://cdegfdvmelgbk"]
 
-[ext_resource type="Script" path="res://scenes/gui/CountryGuesser.gd" id="1_oyuce"]
+[ext_resource type="Script" path="res://scenes/country_guesser/Main.gd" id="1_35hie"]
 [ext_resource type="Texture2D" uid="uid://b6g0gssme3ggh" path="res://assets/worldmap.png" id="2_vxfbv"]
-[ext_resource type="Script" path="res://scenes/gui/HandArea2D.gd" id="3_bud6y"]
+[ext_resource type="Script" path="res://scenes/country_guesser/HandArea2D.gd" id="3_0yeh6"]
 [ext_resource type="Texture2D" uid="uid://djld3i80m5ifn" path="res://assets/record-128.png" id="4_kinm6"]
 [ext_resource type="Theme" uid="uid://bk4nrdxo8h0g0" path="res://themes/MinimalUI.tres" id="5_ugrgy"]
-[ext_resource type="Script" path="res://scenes/gui/SendToLlmButton.gd" id="6_pvdbj"]
-[ext_resource type="Script" path="res://scenes/gui/LlmOutputScrollContainer.gd" id="7_o1qqw"]
-[ext_resource type="Script" path="res://scenes/gui/AudioInput.gd" id="8_u2cg8"]
-[ext_resource type="Script" path="res://scenes/gui/UserTextEdit.gd" id="9_pujfy"]
+[ext_resource type="Script" path="res://scenes/country_guesser/SendToLlmButton.gd" id="6_wb8wh"]
+[ext_resource type="Script" path="res://scenes/country_guesser/LlmOutputScrollContainer.gd" id="7_7r58d"]
+[ext_resource type="Script" path="res://scenes/country_guesser/AudioInput.gd" id="8_nk5wv"]
+[ext_resource type="Script" path="res://scenes/country_guesser/UserTextEdit.gd" id="9_s7vci"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_26r1y"]
 size = Vector2(644.321, 530.727)
@@ -30,9 +30,9 @@ corner_radius_bottom_left = 10
 
 [sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_t6b11"]
 
-[node name="gui" type="Node2D"]
+[node name="country_guesser" type="Node2D"]
 scale = Vector2(1.63186, 1.63186)
-script = ExtResource("1_oyuce")
+script = ExtResource("1_35hie")
 
 [node name="WorldMap" type="Sprite2D" parent="."]
 position = Vector2(588.287, 330.806)
@@ -41,7 +41,7 @@ texture = ExtResource("2_vxfbv")
 
 [node name="HandArea2D" type="Area2D" parent="."]
 position = Vector2(-43, 959)
-script = ExtResource("3_bud6y")
+script = ExtResource("3_0yeh6")
 
 [node name="HandCollisionShape2D" type="CollisionShape2D" parent="HandArea2D"]
 position = Vector2(144.554, -533.128)
@@ -62,7 +62,7 @@ theme_override_constants/outline_size = 0
 theme_override_constants/icon_max_width = 30
 text = "PRESS TO RECORD"
 expand_icon = true
-script = ExtResource("6_pvdbj")
+script = ExtResource("6_wb8wh")
 
 [node name="LlmOutputControl" type="Control" parent="."]
 layout_mode = 3
@@ -83,7 +83,7 @@ offset_bottom = 484.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_uvnm1")
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 2
-script = ExtResource("7_o1qqw")
+script = ExtResource("7_7r58d")
 
 [node name="LlmOutputLabel" type="Label" parent="LlmOutputControl/LlmOutputScrollContainer"]
 custom_minimum_size = Vector2(340, 525)
@@ -97,7 +97,7 @@ autowrap_mode = 3
 stream = SubResource("AudioStreamMicrophone_t6b11")
 autoplay = true
 bus = &"Record"
-script = ExtResource("8_u2cg8")
+script = ExtResource("8_nk5wv")
 
 [node name="UserTextEdit" type="TextEdit" parent="."]
 offset_left = 814.0
@@ -106,8 +106,8 @@ offset_right = 1167.0
 offset_bottom = 583.0
 theme = ExtResource("5_ugrgy")
 placeholder_text = "You can talk to me from here too..."
-script = ExtResource("9_pujfy")
+script = ExtResource("9_s7vci")
 
-[connection signal="audio_recording_started" from="SendToLlmButton" to="AudioInput" method="start_audio_recording"]
-[connection signal="audio_recording_stopped" from="SendToLlmButton" to="AudioInput" method="stop_audio_recording"]
+[connection signal="audio_recording_started" from="SendToLlmButton" to="AudioInput" method="_on_send_to_llm_button_audio_recording_started"]
+[connection signal="audio_recording_stopped" from="SendToLlmButton" to="AudioInput" method="_on_send_to_llm_button_audio_recording_stopped"]
 [connection signal="pressed" from="SendToLlmButton" to="SendToLlmButton" method="_on_Button_pressed"]

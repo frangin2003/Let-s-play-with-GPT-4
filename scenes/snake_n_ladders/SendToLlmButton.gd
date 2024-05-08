@@ -80,5 +80,8 @@ func save_cropped_screenshot_and_animate():
 	await tween.finished
 
 	control_node.queue_free()
-	llmOutputLabel.text += "\n¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\n[Jay Petey]: "
-	Global.check_and_send_to_llm_urls()
+	var user_text = get_node("../UserTextEdit").text
+	get_node("../UserTextEdit").text = ""
+	llmOutputLabel.text += "\n\n[Jay Petey]: "
+	LlmServer.send_to_llm_server(Global.SYSTEM, user_text, false, Global.SCREENSHOT_URL, Global.SYSTEM_IMAGE_URL)
+

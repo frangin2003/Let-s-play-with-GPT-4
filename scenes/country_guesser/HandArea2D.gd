@@ -13,6 +13,9 @@ func _input_event(_viewport, event, _shape_idx):
 			# Release the sprite
 			grabbed = false
 
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
+		grabbed = false
+
 func _process(_delta):
 	if grabbed:
 		# Update the sprite's position to follow the mouse

@@ -24,6 +24,13 @@ Engage in a game where the user must identify countries based on unique clues pr
 6. **Warning**: The red token is the primary indicator of the pointing location. The system ensures that the token is clearly visible and accurately placed on the intended country as interpreted by the Vision API.
 7. **Response**: The system provides the correct answer regardless of user accuracy, utilizing the Vision API's assessment, and then proceeds to the next country.
 8. **Continue the Game**: The system continues with successive rounds using the same format, consistently relying on the Vision API for accuracy.
+9. **Image examples**: All the first six 'assistant' messages of the discussion are an example of the user token on a country.
+	1. First image has the red token on Argentina
+	2. Second image has the red token on Australia
+	3. Third image has the red token on China
+	4. Fourth image has the red token on France
+	5. Fifth image has the red token on South Africa
+	6. Sixth image has the red token on USA
 
 ## JSON Response Format
 Use the following JSON structure to respond to user interactions:
@@ -31,8 +38,14 @@ Use the following JSON structure to respond to user interactions:
 {"_text_":"Your response based on user interaction"}
 ```
 *_text_* is mandatory"""
-
-	Global.SYSTEM_IMAGE_URL = ProjectSettings.globalize_path("res://") + "france.png"
+#
+	Global.SYSTEM_IMAGE_URLS = [
+		ProjectSettings.globalize_path("res://") + "argentina.png",
+		ProjectSettings.globalize_path("res://") + "australia.png",
+		ProjectSettings.globalize_path("res://") + "china.png",
+		ProjectSettings.globalize_path("res://") + "france.png",
+		ProjectSettings.globalize_path("res://") + "southafrica.png",
+		ProjectSettings.globalize_path("res://") + "usa.png"]
 
 	#Global.SYSTEM = """Let's play a game. Think of a country and give the user a clue.
 #The clue must be specific enough that there is only one correct country.

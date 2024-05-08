@@ -1,0 +1,127 @@
+[gd_scene load_steps=15 format=3 uid="uid://bmtma47ggt4bv"]
+
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/Main.gd" id="1_v1ugk"]
+[ext_resource type="Texture2D" uid="uid://2ky7ouhx8bfb" path="res://assets/snakes-and-ladders.png" id="2_yt1qp"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/BlueToken.gd" id="3_qkujm"]
+[ext_resource type="Texture2D" uid="uid://cmbehct7mbee0" path="res://assets/record-128-blue.png" id="4_flcvg"]
+[ext_resource type="Texture2D" uid="uid://djld3i80m5ifn" path="res://assets/record-128.png" id="4_kinm6"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/RedToken.gd" id="5_j7ygh"]
+[ext_resource type="Theme" uid="uid://bk4nrdxo8h0g0" path="res://themes/MinimalUI.tres" id="5_ugrgy"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/SendToLlmButton.gd" id="6_0xa3y"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/LlmOutputScrollContainer.gd" id="7_xv440"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/AudioInput.gd" id="8_0fexn"]
+[ext_resource type="Script" path="res://scenes/snake_n_ladders/UserTextEdit.gd" id="9_ky26k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_26r1y"]
+size = Vector2(50.7767, 54.5612)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uvnm1"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_bottom = 2.0
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.329412, 0.329412, 0.329412, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_t6b11"]
+
+[node name="country_guesser" type="Node2D"]
+scale = Vector2(1.63186, 1.63186)
+script = ExtResource("1_v1ugk")
+
+[node name="WorldMap" type="Sprite2D" parent="."]
+position = Vector2(588.287, 330.806)
+scale = Vector2(0.612799, 0.61147)
+texture = ExtResource("2_yt1qp")
+
+[node name="UserTokenArea2D" type="Area2D" parent="."]
+z_index = 1
+position = Vector2(-43, 959)
+script = ExtResource("3_qkujm")
+
+[node name="UserTokenCollisionShape2D" type="CollisionShape2D" parent="UserTokenArea2D"]
+position = Vector2(837.186, -331.495)
+shape = SubResource("RectangleShape2D_26r1y")
+
+[node name="UserToken" type="Sprite2D" parent="UserTokenArea2D/UserTokenCollisionShape2D"]
+position = Vector2(1.86907, -0.970294)
+scale = Vector2(0.202125, 0.202125)
+texture = ExtResource("4_flcvg")
+
+[node name="AITokenArea2D2" type="Area2D" parent="."]
+position = Vector2(-43, 959)
+script = ExtResource("5_j7ygh")
+
+[node name="AITokenCollisionShape2D" type="CollisionShape2D" parent="AITokenArea2D2"]
+position = Vector2(837.186, -385.421)
+shape = SubResource("RectangleShape2D_26r1y")
+
+[node name="AIToken" type="Sprite2D" parent="AITokenArea2D2/AITokenCollisionShape2D"]
+position = Vector2(1.86907, -0.970294)
+scale = Vector2(0.202125, 0.202125)
+texture = ExtResource("4_kinm6")
+
+[node name="SendToLlmButton" type="Button" parent="."]
+offset_left = 814.0
+offset_top = 588.0
+offset_right = 1167.0
+offset_bottom = 641.0
+theme = ExtResource("5_ugrgy")
+theme_override_constants/outline_size = 0
+theme_override_constants/icon_max_width = 30
+text = "PRESS TO RECORD"
+expand_icon = true
+script = ExtResource("6_0xa3y")
+
+[node name="LlmOutputControl" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 791.0
+offset_top = 30.0
+offset_right = 791.0
+offset_bottom = 30.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="LlmOutputScrollContainer" type="ScrollContainer" parent="LlmOutputControl"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 0
+offset_left = 21.0
+offset_right = 378.0
+offset_bottom = 484.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_uvnm1")
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
+script = ExtResource("7_xv440")
+
+[node name="LlmOutputLabel" type="Label" parent="LlmOutputControl/LlmOutputScrollContainer"]
+custom_minimum_size = Vector2(340, 525)
+layout_mode = 2
+size_flags_vertical = 1
+text = "
+"
+autowrap_mode = 3
+
+[node name="AudioInput" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_t6b11")
+autoplay = true
+bus = &"Record"
+script = ExtResource("8_0fexn")
+
+[node name="UserTextEdit" type="TextEdit" parent="."]
+offset_left = 814.0
+offset_top = 520.0
+offset_right = 1167.0
+offset_bottom = 583.0
+theme = ExtResource("5_ugrgy")
+placeholder_text = "You can talk to me from here too..."
+script = ExtResource("9_ky26k")
+
+[connection signal="pressed" from="SendToLlmButton" to="SendToLlmButton" method="_on_Button_pressed"]

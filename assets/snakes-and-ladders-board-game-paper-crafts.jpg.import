@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36s7eyupvoan"
-path="res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"
+uid="uid://b5avhvihoqt0n"
+path="res://.godot/imported/snakes-and-ladders-board-game-paper-crafts.jpg-7fbd7bab8b6f7b9085a08d2a5cf1cea9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screenshot.png"
-dest_files=["res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"]
+source_file="res://assets/snakes-and-ladders-board-game-paper-crafts.jpg"
+dest_files=["res://.godot/imported/snakes-and-ladders-board-game-paper-crafts.jpg-7fbd7bab8b6f7b9085a08d2a5cf1cea9.ctex"]
 
 [params]
 

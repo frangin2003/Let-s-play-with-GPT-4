@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://de85s17drcgsq"
-path="res://.godot/imported/worldmap - Copy.png-a91bbbe7a8db0b93c37f3a17cddc160d.ctex"
+uid="uid://c85gxbj6weewm"
+path="res://.godot/imported/southafrica_hand.png-7c8536b76c990b5f7fa8e111f0ec7721.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/worldmap - Copy.png"
-dest_files=["res://.godot/imported/worldmap - Copy.png-a91bbbe7a8db0b93c37f3a17cddc160d.ctex"]
+source_file="res://southafrica_hand.png"
+dest_files=["res://.godot/imported/southafrica_hand.png-7c8536b76c990b5f7fa8e111f0ec7721.ctex"]
 
 [params]
 

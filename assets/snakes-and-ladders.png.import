@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d36s7eyupvoan"
-path="res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"
+uid="uid://2ky7ouhx8bfb"
+path="res://.godot/imported/snakes-and-ladders.png-214be0c081fffdc48d5a795d87525161.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://screenshot.png"
-dest_files=["res://.godot/imported/screenshot.png-024a21af5d37bf0f0dd0e2bccdd149d0.ctex"]
+source_file="res://assets/snakes-and-ladders.png"
+dest_files=["res://.godot/imported/snakes-and-ladders.png-214be0c081fffdc48d5a795d87525161.ctex"]
 
 [params]
 
